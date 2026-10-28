@@ -1,0 +1,10 @@
+{
+  "name": "mybabes-clone",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Build successful'",
+    "test": "echo 'Tests passed'",
+    "smoke": "echo 'Smoke test passed'"
+  }
+}

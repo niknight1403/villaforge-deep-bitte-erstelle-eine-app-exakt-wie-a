@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./packages/frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+  backend:
+    build: ./packages/backend
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/mybabes
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mybabes
+    ports:
+      - "5432:5432"
