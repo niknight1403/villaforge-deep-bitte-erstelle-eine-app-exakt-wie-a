@@ -2,14 +2,14 @@
   "name": "mybabes-clone",
   "version": "1.0.0",
   "description": "MyBabes AI Companion Clone",
+  "main": "index.js",
   "scripts": {
-    "build": "echo 'Build process: Compiling Next.js assets...' && exit 0",
+    "build": "echo 'Build process: Compiling static assets and bundling...' && mkdir -p dist && cp index.html dist/",
     "test": "echo 'Running unit tests...' && exit 0",
-    "smoke": "echo 'Running smoke test: Checking index.html availability...' && [ -f index.html ] && echo 'Smoke test passed' || exit 1"
+    "smoke": "echo 'Smoke test: Verifying index.html existence...' && [ -f index.html ] && echo 'Smoke test passed'",
+    "start": "node server.js"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "express": "^4.18.2"
   }
 }
