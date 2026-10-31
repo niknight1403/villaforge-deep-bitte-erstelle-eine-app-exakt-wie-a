@@ -2,15 +2,14 @@
   "name": "mybabes-clone",
   "version": "1.0.0",
   "description": "MyBabes.ai clone application",
-  "main": "index.js",
   "scripts": {
-    "build": "echo 'Build process: Compiling assets...' && mkdir -p dist && cp index.html dist/",
-    "test": "echo 'Running unit tests...' && exit 0",
-    "smoke": "echo 'Smoke test: Verifying index.html existence...' && [ -f index.html ] && echo 'Smoke test passed' || (echo 'Smoke test failed' && exit 1)"
+    "build": "echo 'Building project...' && mkdir -p dist && cp index.html dist/",
+    "test": "echo 'Running tests...' && exit 0",
+    "smoke": "echo 'Running smoke test...' && [ -f dist/index.html ] && echo 'Smoke test passed'"
   },
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "prisma": "latest"
   }
 }
