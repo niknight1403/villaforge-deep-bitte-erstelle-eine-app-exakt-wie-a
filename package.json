@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev:frontend": "cd packages/frontend && npm run dev",
+    "dev:backend": "cd packages/backend && npm run dev",
     "build": "echo 'Build successful'",
     "test": "echo 'Tests passed'",
     "smoke": "echo 'Smoke test passed'"
