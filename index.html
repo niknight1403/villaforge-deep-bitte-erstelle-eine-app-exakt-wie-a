@@ -2,17 +2,25 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBabes AI Clone</title>
-    <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .companion-card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; text-align: center; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Willkommen bei MyBabes AI</h1>
-    <div class="companion-card">
-        <h2>Dein Companion</h2>
-        <p>Hier startet dein KI-Erlebnis.</p>
-    </div>
+<body class="bg-[#0D0D12] text-white min-h-screen">
+    <header class="p-6 text-center">
+        <h1 class="text-3xl font-bold text-[#FF3366]">MyBabes AI</h1>
+    </header>
+    <main id="discovery-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-6xl mx-auto"></main>
+    <script type="module">
+        import { companions } from './src/mockData.js';
+        const container = document.getElementById('discovery-container');
+        container.innerHTML = companions.map(c => `
+            <div class="bg-[#1A1A22] p-6 rounded-2xl border border-[#333] hover:border-[#FF3366] transition-all">
+                <h3 class="text-xl font-bold">${c.name}, ${c.age}</h3>
+                <p class="text-[#A0A0B0] mt-2">${c.bio}</p>
+                <button class="mt-4 bg-[#FF3366] hover:bg-[#ff1a50] text-white px-6 py-3 rounded-xl w-full font-semibold">Chat Now</button>
+            </div>
+        `).join('');
+    </script>
 </body>
 </html>
