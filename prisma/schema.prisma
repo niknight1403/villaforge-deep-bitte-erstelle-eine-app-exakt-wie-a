@@ -8,39 +8,28 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  name          String?
-  stripeId      String?
-  subscription  Subscription?
-  messages      Message[]
-  createdAt     DateTime       @default(now())
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
 }
 
 model Companion {
-  id          String    @id @default(uuid())
+  id          String @id @default(uuid())
   name        String
-  bio         String
-  avatarUrl   String
-  messages    Message[]
-  createdAt   DateTime  @default(now())
+  description String
+  imageUrl    String
 }
 
 model Message {
-  id          String    @id @default(uuid())
-  content     String
-  senderId    String
-  companionId String
-  user        User      @relation(fields: [senderId], references: [id])
-  companion   Companion @relation(fields: [companionId], references: [id])
-  createdAt   DateTime  @default(now())
+  id        String   @id @default(uuid())
+  content   String
+  senderId  String
+  createdAt DateTime @default(now())
 }
 
 model Subscription {
-  id        String   @id @default(uuid())
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  status    String
-  plan      String
-  expiresAt DateTime
+  id     String @id @default(uuid())
+  userId String @unique
+  status String
 }

@@ -1,14 +1,1 @@
-{
-  "name": "mybabes-clone",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "echo 'Build successful'",
-    "test": "echo 'Tests passed'",
-    "smoke": "node -e \"console.log('Smoke test: Server and UI components initialized correctly.')\""
-  },
-  "dependencies": {
-    "prisma": "^5.0.0",
-    "next": "latest",
-    "react": "latest"
-  }
-}
+{"name":"my-project","version":"1.0.0","description":"","main":"index.js","scripts":{"test":"echo \
