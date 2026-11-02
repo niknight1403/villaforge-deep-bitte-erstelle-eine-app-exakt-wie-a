@@ -1,52 +1,48 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { FaChevronLeft } from 'react-icons/fa';
-import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import { Avatar } from '@chakra-ui/react';
-import { Box, Flex, Text, IconButton } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
-const ChatView = () => {
-  const router = useRouter();
-  const { id } = router.query;
+interface Message {
+  id: string;
+  sender: 'user' | 'ai';
+  text: string;
+}
 
-  const handleBack = () => {
-    router.back();
+export default function ChatView() {
+  const [messages, setMessages] = useState<Message[]>([
+    { id: '1', sender: 'ai', text: 'Hallo! Wie kann ich dir heute helfen?' }
+  ]);
+  const [input, setInput] = useState('');
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages([...messages, { id: Date.now().toString(), sender: 'user', text: input }]);
+    setInput('');
   };
 
   return (
-    <Box bg="#0F0F13" h="100vh" overflowY="auto">
-      <Flex
-        bg="#1A1A22"
-        p="2"
-        alignItems="center"
-        justifyContent="space-between"
-        position="fixed"
-        top="0"
-        w="100%"
-      >
-        <IconButton
-          icon={<FaChevronLeft />}
-          onClick={handleBack}
-          colorScheme="pink"
-          variant="outline"
-          size="sm"
+    <div className="flex flex-col h-screen bg-[#0F0F13] text-white">
+      <header className="p-4 border-b border-[#1A1A22] flex items-center">
+        <div className="w-10 h-10 rounded-full bg-gray-600 mr-3" />
+        <div>
+          <h1 className="font-bold">Companion</h1>
+          <span className="text-xs text-green-500">Online</span>
+        </div>
+      </header>
+      <div className="flex-1 p-4 overflow-y-auto">
+        {messages.map((m) => (
+          <div key={m.id} className={`mb-4 p-3 rounded-lg ${m.sender === 'user' ? 'bg-[#FF3366] ml-auto' : 'bg-[#1A1A22]'} max-w-[80%]`}>
+            {m.text}
+          </div>
+        ))}
+      </div>
+      <div className="p-4 bg-[#1A1A22] flex">
+        <input 
+          className="flex-1 bg-transparent outline-none"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Nachricht schreiben..."
         />
-        <Flex alignItems="center">
-          <Avatar size="sm" mr="2" name="User" />
-          <Text color="#FFFFFF">Username</Text>
-          <Box bg="#00FF00" borderRadius="50%" ml="2" w="8px" h="8px" />
-        </Flex>
-        <IconButton
-          icon={<BiDotsHorizontalRounded />}
-          colorScheme="gray"
-          variant="outline"
-          size="sm"
-        />
-      </Flex>
-
-      {/* Chat Messages */}
-    </Box>
+        <button onClick={handleSend} className="text-[#FF3366] font-bold">Senden</button>
+      </div>
+    </div>
   );
-};
-
-export default ChatView;
+}
