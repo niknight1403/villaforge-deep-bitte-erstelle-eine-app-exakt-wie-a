@@ -8,28 +8,7 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-}
-
-model Companion {
-  id          String @id @default(uuid())
-  name        String
-  description String
-  imageUrl    String
-}
-
-model Message {
-  id        String   @id @default(uuid())
-  content   String
-  senderId  String
-  createdAt DateTime @default(now())
-}
-
-model Subscription {
-  id     String @id @default(uuid())
-  userId String @unique
-  status String
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
 }
