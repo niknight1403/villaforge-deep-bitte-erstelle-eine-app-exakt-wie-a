@@ -1,2 +1,2 @@
-def hello_world():
-    print('Hello, world!')
+def new_function():
+    print('Hello, World!')
