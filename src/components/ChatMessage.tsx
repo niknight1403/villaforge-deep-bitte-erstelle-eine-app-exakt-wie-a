@@ -1,4 +1,4 @@
-// ChatMessage component implementation
+// ChatMessage.tsx
 import React from 'react';
 
 interface ChatMessageProps {
@@ -9,7 +9,8 @@ interface ChatMessageProps {
 const ChatMessage: React.FC<ChatMessageProps> = ({ message, sender }) => {
   return (
     <div className='chat-message'>
-      <strong>{sender}:</strong> {message}
+      <div className='sender'>{sender}</div>
+      <div className='message'>{message}</div>
     </div>
   );
 };

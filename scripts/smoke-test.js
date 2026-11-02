@@ -1,17 +1,24 @@
+const http = require('http');
+
+const PORT = process.env.PORT || 3000;
+
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: User Flow Verification...');
-  try {
-    // Simulate core user flow: Login -> View Profile -> Chat
-    const mockUser = { id: 1, name: 'TestUser' };
-    const mockCompanion = { id: 101, name: 'AI Companion' };
-    
-    if (!mockUser.id || !mockCompanion.id) throw new Error('User/Companion data missing');
-    
-    console.log(`Success: User ${mockUser.name} connected to ${mockCompanion.name}`);
-    process.exit(0);
-  } catch (error) {
-    console.error('Smoke Test Failed:', error.message);
-    process.exit(1);
-  }
+  console.log('Starting smoke test...');
+  return new Promise((resolve, reject) => {
+    const req = http.get(`http://localhost:${PORT}/`, (res) => {
+      if (res.statusCode === 200) {
+        console.log('Smoke test passed: Server is reachable.');
+        resolve();
+      } else {
+        console.error(`Smoke test failed: Status code ${res.statusCode}`);
+        reject();
+      }
+    });
+    req.on('error', (err) => {
+      console.error('Smoke test failed: Could not connect to server.', err);
+      reject(err);
+    });
+  });
 }
-runSmokeTest();
+
+runSmokeTest().catch(() => process.exit(1));
