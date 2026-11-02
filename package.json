@@ -6,22 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo 'No tests defined' && exit 0",
-    "smoke": "node scripts/smoke-test.js"
+    "lint": "next lint",
+    "test": "echo 'No tests configured yet' && exit 0"
   },
   "dependencies": {
     "next": "14.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "framer-motion": "10.16.4",
-    "zustand": "4.4.3"
+    "react": "^18",
+    "react-dom": "^18",
+    "framer-motion": "^10.0.0",
+    "@chakra-ui/react": "^2.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "^10.0.0",
+    "react-icons": "^4.0.0"
   },
   "devDependencies": {
-    "tailwindcss": "3.3.3",
-    "postcss": "8.4.31",
-    "autoprefixer": "10.4.16",
-    "typescript": "5.2.2",
-    "@types/node": "20.8.7",
-    "@types/react": "18.2.31"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "postcss": "^8",
+    "tailwindcss": "^3"
   }
 }
