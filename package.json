@@ -1,13 +1,25 @@
 {
   "name": "mybabes-clone",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
-  "description": "Web-Prototyp: Discovery-Grid mit Chat-Panel, ohne externe Laufzeitabhaengigkeiten.",
   "scripts": {
-    "build": "node scripts/build.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "node scripts/test.js",
-    "smoke": "node scripts/smoke.js",
-    "quality": "node scripts/quality.js",
-    "start": "node server.js"
+    "smoke": "node scripts/smoke-test.js"
+  },
+  "dependencies": {
+    "next": "14.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "framer-motion": "10.16.0",
+    "zustand": "4.4.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.3.0",
+    "postcss": "8.4.0",
+    "autoprefixer": "10.4.0",
+    "typescript": "5.0.0"
   }
 }

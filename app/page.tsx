@@ -1,9 +1,9 @@
-import React from 'react';
+import ChatInterface from '../src/components/ChatInterface';
 
 export default function Home() {
- return (
- <main className="flex min-h-screen flex-col items-center justify-center bg-[#0F0F13]">
- <h1 className="text-4xl font-bold text-white">Welcome to MyBabes Clone</h1>
- </main>
- );
+  return (
+    <main className="min-h-screen bg-[#0F0F13] text-white">
+      <ChatInterface />
+    </main>
+  );
 }
