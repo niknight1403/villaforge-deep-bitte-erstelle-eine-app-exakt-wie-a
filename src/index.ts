@@ -1,0 +1,1 @@
+console.log('MyBabes Clone initialized. Ready for UI and Backend integration.');
