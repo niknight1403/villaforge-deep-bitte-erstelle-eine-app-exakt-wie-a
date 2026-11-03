@@ -2,9 +2,19 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#0F0F13] text-white">
-      <h1 className="text-4xl font-bold text-[#FF3366]">MyBabes Clone</h1>
-      <p className="mt-4 text-[#A0A0B0]">Willkommen in der interaktiven Companion-Plattform.</p>
+    <main className="min-h-screen bg-[#0F0F13] text-white p-4">
+      <header className="flex items-center justify-between py-4 border-b border-[#1A1A22]">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-[#FF3366]" />
+          <div>
+            <h1 className="font-bold">MyBabes AI</h1>
+            <p className="text-xs text-[#A0A0B0]">Online</p>
+          </div>
+        </div>
+      </header>
+      <section className="mt-8">
+        <p className="text-[#A0A0B0]">Willkommen bei deinem KI-Companion.</p>
+      </section>
     </main>
   );
 }
