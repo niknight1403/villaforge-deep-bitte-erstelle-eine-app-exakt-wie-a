@@ -1,7 +1,28 @@
 {
-  "name": "my-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "mybabes-clone",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "echo 'No tests configured' && exit 0",
+    "smoke": "echo 'Smoke test: Verifying build...' && npm run build"
+  },
+  "dependencies": {
+    "next": "14.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "framer-motion": "11.0.0",
+    "zustand": "4.5.0"
+  },
+  "devDependencies": {
+    "typescript": "5.3.3",
+    "@types/node": "20.11.0",
+    "@types/react": "18.2.0",
+    "tailwindcss": "3.4.1",
+    "postcss": "8.4.33",
+    "autoprefixer": "10.4.17"
+  }
+}
