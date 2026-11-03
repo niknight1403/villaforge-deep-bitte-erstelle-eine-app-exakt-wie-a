@@ -1,26 +1,83 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBabes AI Clone</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyBabes AI Clone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#0D0D12] text-white min-h-screen">
-    <header class="p-6 text-center">
-        <h1 class="text-3xl font-bold text-[#FF3366]">MyBabes AI</h1>
-    </header>
-    <main id="discovery-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-6xl mx-auto"></main>
-    <script type="module">
-        import { companions } from './src/mockData.js';
-        const container = document.getElementById('discovery-container');
-        container.innerHTML = companions.map(c => `
-            <div class="bg-[#1A1A22] p-6 rounded-2xl border border-[#333] hover:border-[#FF3366] transition-all">
-                <h3 class="text-xl font-bold">${c.name}, ${c.age}</h3>
-                <p class="text-[#A0A0B0] mt-2">${c.bio}</p>
-                <button class="mt-4 bg-[#FF3366] hover:bg-[#ff1a50] text-white px-6 py-3 rounded-xl w-full font-semibold">Chat Now</button>
-            </div>
-        `).join('');
-    </script>
+  <header class="p-6 text-center">
+    <h1 class="text-3xl font-bold text-[#FF3366]">MyBabes AI</h1>
+    <p class="text-[#A0A0B0] mt-2">Entdecke Begleiterinnen und starte einen Chat.</p>
+  </header>
+  <main id="discovery-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-6xl mx-auto"></main>
+  <section id="chat-panel" class="max-w-2xl mx-auto p-6 hidden">
+    <h2 id="chat-title" class="text-2xl font-bold text-[#FF3366] mb-4"></h2>
+    <div id="chat-log" class="bg-[#1A1A22] rounded-2xl p-4 h-64 overflow-y-auto mb-4 space-y-2"></div>
+    <form id="chat-form" class="flex gap-2">
+      <input id="chat-input" class="flex-1 bg-[#1A1A22] rounded-xl px-4 py-3 outline-none" placeholder="Nachricht schreiben..." />
+      <button class="bg-[#FF3366] px-6 py-3 rounded-xl font-semibold">Senden</button>
+    </form>
+  </section>
+  <script>
+    const companions = [
+      { name: "Luna", age: 27, bio: "Reist gern, redet über Musik und Sternenhimmel." },
+      { name: "Mira", age: 31, bio: "Köchin mit Faible für alte Filme und lange Spaziergänge." },
+      { name: "Nova", age: 24, bio: "Programmiererin, die über KI und Science-Fiction diskutiert." }
+    ];
+    const container = document.getElementById("discovery-container");
+    const panel = document.getElementById("chat-panel");
+    const log = document.getElementById("chat-log");
+    const title = document.getElementById("chat-title");
+    let aktiv = null;
+
+    function antwort(text, name) {
+      const t = text.toLowerCase();
+      if (t.includes("hallo") || t.includes("hi")) return `Hey! Schön, dass du schreibst. Was beschäftigt dich, ${name}?`;
+      if (t.includes("?")) return "Gute Frage. Erzähl mir mehr, was genau meinst du?";
+      return `Das klingt spannend. Ich denke gerade auch über "${text.slice(0, 40)}" nach.`;
+    }
+
+    function zeige(text, wer) {
+      const el = document.createElement("p");
+      el.className = wer === "ich" ? "text-right text-[#FF3366]" : "text-left text-[#E0E0E8]";
+      el.textContent = (wer === "ich" ? "Du: " : aktiv + ": ") + text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function oeffneChat(c) {
+      aktiv = c.name;
+      title.textContent = "Chat mit " + c.name;
+      log.innerHTML = "";
+      panel.classList.remove("hidden");
+      zeige(c.bio, c.name);
+      panel.scrollIntoView({ behavior: "smooth" });
+    }
+
+    container.innerHTML = companions.map((c, i) => `
+      <div class="bg-[#1A1A22] p-6 rounded-2xl border border-[#333] hover:border-[#FF3366] transition-all">
+        <h3 class="text-xl font-bold">${c.name}, ${c.age}</h3>
+        <p class="text-[#A0A0B0] mt-2">${c.bio}</p>
+        <button data-i="${i}" class="chat-btn mt-4 bg-[#FF3366] hover:bg-[#ff1a50] px-6 py-3 rounded-xl w-full font-semibold">Chat Now</button>
+      </div>
+    `).join("");
+
+    container.addEventListener("click", (e) => {
+      const b = e.target.closest(".chat-btn");
+      if (b) oeffneChat(companions[Number(b.dataset.i)]);
+    });
+
+    document.getElementById("chat-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const feld = document.getElementById("chat-input");
+      const text = feld.value.trim();
+      if (!text || !aktiv) return;
+      zeige(text, "ich");
+      feld.value = "";
+      setTimeout(() => zeige(antwort(text, aktiv), aktiv), 300);
+    });
+  </script>
 </body>
 </html>

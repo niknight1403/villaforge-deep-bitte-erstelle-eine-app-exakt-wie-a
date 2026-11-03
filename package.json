@@ -1,7 +1,13 @@
 {
-  "name": "my-project",
+  "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Web-Prototyp: Discovery-Grid mit Chat-Panel, ohne externe Laufzeitabhaengigkeiten.",
   "scripts": {
-    "test": "echo \
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js",
+    "smoke": "node scripts/smoke.js",
+    "quality": "node scripts/quality.js",
+    "start": "node server.js"
+  }
+}
