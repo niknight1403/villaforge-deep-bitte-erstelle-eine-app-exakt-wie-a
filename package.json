@@ -1,12 +1,1 @@
-{
-  "name": "my-project",
-  "version": "1.0.0",
-  "description": "A sample project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo "Error: no test specified" && exit 1"
-  },
-  "keywords": [],
-  "author": "Your Name",
-  "license": "ISC"
-}
+{"name":"example-project","version":"1.0.0","description":"A sample project","main":"index.js","scripts":{"test":"echo \
