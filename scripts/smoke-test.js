@@ -1,27 +1,16 @@
-const http = require('http');
+console.log('Starting Smoke Test...');
+const fs = require('fs');
+const path = require('path');
 
-const PORT = 3000;
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ status: 'ok', flow: 'chat-interface' }));
-});
+function checkFile(filePath) {
+  if (fs.existsSync(path.join(__dirname, '..', filePath))) {
+    console.log(`[PASS] ${filePath} exists.`);
+  } else {
+    console.error(`[FAIL] ${filePath} missing.`);
+    process.exit(1);
+  }
+}
 
-server.listen(PORT, () => {
-  console.log('Smoke test server running on port ' + PORT);
-  const req = http.request(`http://localhost:${PORT}`, (res) => {
-    let data = '';
-    res.on('data', (chunk) => { data += chunk; });
-    res.on('end', () => {
-      const result = JSON.parse(data);
-      if (result.status === 'ok') {
-        console.log('Smoke test passed: User flow accessible.');
-        process.exit(0);
-      } else {
-        console.error('Smoke test failed: Invalid response.');
-        process.exit(1);
-      }
-    });
-  });
-  req.on('error', (e) => { console.error(e); process.exit(1); });
-  req.end();
-});
+checkFile('package.json');
+checkFile('tailwind.config.ts');
+console.log('Smoke Test Passed.');

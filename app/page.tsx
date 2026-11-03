@@ -1,10 +1,1 @@
-import React from 'react';
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#0F0F13] text-white">
-      <h1 className="text-4xl font-bold text-[#FF3366]">MyBabes Clone</h1>
-      <p className="mt-4 text-[#A0A0B0]">Willkommen in der Companion-Plattform.</p>
-    </main>
-  );
-}
+export default function Home() { return <main className="min-h-screen bg-background text-textPrimary p-4"><h1>MyBabes Clone</h1><p className="text-textSecondary">Willkommen in der Companion-Plattform.</p></main>; }
