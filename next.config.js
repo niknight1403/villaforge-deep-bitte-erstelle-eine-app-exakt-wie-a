@@ -2,15 +2,19 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com'],
-    formats: ['image/avif', 'image/webp'],
+    unoptimized: true,
   },
-  headers: async () => [
-    {
-      source: '/_next/static/:path*',
-      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-    },
-  ],
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+      };
+    }
+    return config;
+  },
 };
 
 module.exports = nextConfig;
