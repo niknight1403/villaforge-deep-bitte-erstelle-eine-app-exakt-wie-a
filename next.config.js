@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    domains: ['localhost'],
   },
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
@@ -11,6 +11,8 @@ const nextConfig = {
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
+        maxInitialRequests: 25,
+        minSize: 20000,
       };
     }
     return config;
