@@ -1,14 +1,14 @@
-export const getMockResponse = async (message: string): Promise<string> => {
-  // Simulate network latency
-  await new Promise((resolve) => setTimeout(resolve, 600));
-  
+import { memoize } from 'lodash';
+
+// Memoized mock AI response to reduce CPU overhead
+export const getMockResponse = memoize((input: string) => {
   const responses = [
-    "That's fascinating! Tell me more about that.",
-    "I'm really enjoying our conversation today.",
-    "That sounds like an interesting perspective. What do you think about it?",
-    "I'm here for you. What's on your mind?",
-    "I love how you think!"
+    "Das ist ein interessanter Gedanke. Erzähl mir mehr darüber.",
+    "Ich verstehe vollkommen, wie du dich fühlst.",
+    "Das klingt wirklich spannend! Was denkst du darüber?",
+    "Ich bin ganz Ohr. Was beschäftigt dich heute?"
   ];
-  
   return responses[Math.floor(Math.random() * responses.length)];
-};
+});
+
+export const getFallbackResponse = () => "Entschuldige, ich bin gerade etwas abgelenkt. Lass uns gleich weiterreden.";
