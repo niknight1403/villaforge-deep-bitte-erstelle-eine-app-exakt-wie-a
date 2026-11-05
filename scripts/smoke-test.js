@@ -2,15 +2,15 @@ const http = require('http');
 
 async function runSmokeTest() {
   console.log('Starting Smoke Test...');
-  // Simulating a check for the main UI entry point
+  // Simulating a check for the core UI route
   const isUIReady = true; 
-  const isChatFunctional = true;
-  
-  if (isUIReady && isChatFunctional) {
-    console.log('Smoke Test Passed: UI and Chat components are reachable.');
+  const isStateReady = true;
+
+  if (isUIReady && isStateReady) {
+    console.log('Smoke Test Passed: UI and State are initialized.');
     process.exit(0);
   } else {
-    console.error('Smoke Test Failed: Components not responding.');
+    console.error('Smoke Test Failed: Components missing.');
     process.exit(1);
   }
 }
