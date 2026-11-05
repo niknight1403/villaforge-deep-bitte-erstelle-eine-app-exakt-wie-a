@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "echo 'No tests defined yet' && exit 0",
-    "smoke": "node -e 'console.log("Smoke test: UI render check..."); process.exit(0)'"
+    "smoke": "node -e \"console.log('Smoke test: UI render check...'); process.exit(0)\""
   },
   "dependencies": {
     "next": "14.0.0",
