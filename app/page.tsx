@@ -13,9 +13,8 @@ export default function Home() {
         </div>
       </header>
       <section className="mt-8">
-        <div className="bg-[#1A1A22] p-6 rounded-xl">
-          <h2 className="text-xl font-semibold">Willkommen bei MyBabes</h2>
-          <p className="text-[#A0A0B0] mt-2">Interaktive KI-Companion Plattform.</p>
+        <div className="p-4 bg-[#1A1A22] rounded-xl">
+          <p>Willkommen bei MyBabes. Deine KI-Begleitung wartet.</p>
         </div>
       </section>
     </main>
