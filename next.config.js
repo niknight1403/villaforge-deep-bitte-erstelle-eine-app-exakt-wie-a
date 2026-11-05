@@ -3,15 +3,22 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['localhost'],
+    domains: ['images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
   },
-  headers: async () => [
-    {
-      source: '/_next/static/:path*',
-      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-    },
-  ],
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        maxInitialRequests: 25,
+        minSize: 20000,
+      };
+    }
+    return config;
+  },
 };
 
 module.exports = nextConfig;
