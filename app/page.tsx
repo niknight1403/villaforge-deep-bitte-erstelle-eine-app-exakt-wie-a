@@ -7,16 +7,13 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-[#FF3366]" />
           <div>
-            <h1 className="font-bold">Companion</h1>
-            <p className="text-xs text-green-500">Online</p>
+            <h1 className="font-bold">MyBabes Clone</h1>
+            <p className="text-xs text-[#A0A0B0]">Online</p>
           </div>
         </div>
       </header>
       <section className="mt-8">
-        <div className="bg-[#1A1A22] p-6 rounded-2xl">
-          <h2 className="text-xl font-semibold">Welcome to your AI Companion</h2>
-          <p className="text-[#A0A0B0] mt-2">Start chatting to experience the interface.</p>
-        </div>
+        <p className="text-center text-[#A0A0B0]">Willkommen in der interaktiven Companion-Plattform.</p>
       </section>
     </main>
   );
