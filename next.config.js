@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['localhost'],
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
   },
-  compress: true,
 };
 
 module.exports = nextConfig;
