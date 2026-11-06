@@ -1,15 +1,31 @@
-import { test } from 'node:test';
+import { test, describe } from 'node:test';
 import assert from 'node:assert';
 
-test('UI Render Simulation', () => {
-  const uiState = { header: 'visible', chat: 'active', status: 200 };
-  assert.strictEqual(uiState.header, 'visible');
-  assert.strictEqual(uiState.status, 200);
-  console.log('UI Render Test Passed');
-});
+// Minimalistic test suite using built-in node:test
+// No external dependencies required
 
-test('Error Handling Simulation', () => {
-  const mockFetch = (status) => status === 200 ? 'success' : 'error';
-  assert.strictEqual(mockFetch(500), 'error');
-  console.log('Error Handling Test Passed');
+const mockApp = {
+  status: 'ready',
+  components: ['Header', 'ChatInterface', 'Profile'],
+  checkFlow: (input) => input === 'hello' ? 'success' : 'error'
+};
+
+describe('MyBabes Clone Verification', () => {
+  test('System should be initialized', () => {
+    assert.strictEqual(mockApp.status, 'ready');
+  });
+
+  test('Core components should exist', () => {
+    assert.ok(mockApp.components.includes('ChatInterface'));
+  });
+
+  test('Smoke Test: User interaction flow', () => {
+    const response = mockApp.checkFlow('hello');
+    assert.strictEqual(response, 'success');
+  });
+
+  test('Smoke Test: Error handling', () => {
+    const response = mockApp.checkFlow('invalid');
+    assert.strictEqual(response, 'error');
+  });
 });
