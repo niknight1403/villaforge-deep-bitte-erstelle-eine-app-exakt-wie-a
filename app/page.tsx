@@ -3,8 +3,8 @@ import React from 'react';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#0F0F13] text-white">
-      <h1 className="text-4xl font-bold">Willkommen bei MyBabes Clone</h1>
-      <p className="mt-4 text-[#A0A0B0]">Die App ist bereit für die Chat-Integration.</p>
+      <h1 className="text-4xl font-bold">Welcome to MyBabes Clone</h1>
+      <p className="mt-4 text-[#A0A0B0]">The platform is initializing...</p>
     </main>
   );
 }
