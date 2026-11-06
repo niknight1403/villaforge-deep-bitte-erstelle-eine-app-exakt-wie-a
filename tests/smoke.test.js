@@ -1,9 +1,8 @@
-const test = require('node:test');
 const assert = require('node:assert');
+const { test } = require('node:test');
 
 test('Smoke Test: Core UI Flow', async () => {
   const fs = require('fs');
-  const exists = fs.existsSync('./public/index.html');
-  assert.strictEqual(exists, true, 'Frontend entry point missing');
-  console.log('Smoke test passed: UI entry point found.');
+  const exists = fs.existsSync('./src/components/ChatInterface.tsx');
+  assert.strictEqual(exists, true, 'ChatInterface component must exist');
 });
