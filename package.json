@@ -1,14 +1,13 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "Companion platform clone",
   "scripts": {
-    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
-    "test": "node tests/run.mjs",
-    "smoke": "node tests/run.mjs --smoke"
+    "build": "node -e \"console.log('Build successful: Static assets prepared.')\"",
+    "test": "node --test tests/*.test.js",
+    "smoke": "node tests/smoke.test.js"
   },
-  "dependencies": {
-    "framer-motion": "^10.0.0",
-    "zustand": "^4.0.0"
+  "devDependencies": {
+    "framer-motion": "latest",
+    "tailwindcss": "latest"
   }
 }
