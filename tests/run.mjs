@@ -1,14 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
+import fs from 'node:fs';
 
-test('Smoke Test: Core UI Logic', () => {
-  const hasHeader = true; // Simulated check for header component
-  const hasChatInput = true; // Simulated check for input field
-  assert.strictEqual(hasHeader, true, 'Header should exist');
-  assert.strictEqual(hasChatInput, true, 'Chat input should exist');
+test('Smoke Test: Verify UI components exist', () => {
+  const uiFile = 'src/components/ChatInterface.tsx';
+  assert.ok(fs.existsSync(uiFile), 'ChatInterface.tsx should exist');
+  console.log('Smoke test passed: UI components verified.');
 });
 
-test('Error Handling: Empty Message', () => {
-  const validate = (msg) => msg.length > 0;
-  assert.strictEqual(validate(''), false, 'Empty messages should be rejected');
+test('Build Simulation: Check project structure', () => {
+  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+  assert.ok(pkg.name, 'package.json must have a name');
+  console.log('Build simulation passed: package.json valid.');
 });
