@@ -9,11 +9,11 @@ interface Message {
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: "Hallo! Wie geht es dir heute?", sender: 'ai' }
+    { id: 1, text: 'Hallo! Wie kann ich dir heute helfen?', sender: 'ai' }
   ]);
   const [input, setInput] = useState('');
 
-  const sendMessage = () => {
+  const handleSend = () => {
     if (!input.trim()) return;
     setMessages([...messages, { id: Date.now(), text: input, sender: 'user' }]);
     setInput('');
@@ -25,36 +25,37 @@ export default function ChatInterface() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gray-600" />
           <div>
-            <h2 className="font-bold">Luna</h2>
-            <span className="text-xs text-green-400">● Online</span>
+            <p className="font-bold">Companion</p>
+            <span className="text-xs text-green-500">● Online</span>
           </div>
         </div>
         <button className="text-xl">⋮</button>
       </header>
 
-      <main className="flex-1 overflow-y-auto pt-20 pb-24 px-4 space-y-4">
+      <main className="flex-1 overflow-y-auto p-4 pt-20 pb-24">
         {messages.map((msg) => (
           <motion.div 
             key={msg.id} 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 10 }} 
             animate={{ opacity: 1, y: 0 }}
-            className={`p-3 rounded-2xl max-w-[80%] ${msg.sender === 'ai' ? 'bg-[#1A1A22]' : 'bg-[#FF3366] ml-auto'}`}>
+            className={`mb-4 p-3 rounded-2xl max-w-[80%] ${msg.sender === 'ai' ? 'bg-[#1A1A22] self-start' : 'bg-[#FF3366] self-end ml-auto'}`}
+          >
             {msg.text}
           </motion.div>
         ))}
       </main>
 
-      <div className="fixed bottom-0 w-full p-4 bg-[#1A1A22]">
+      <footer className="fixed bottom-0 w-full p-4 bg-[#1A1A22]">
         <div className="flex gap-2">
           <input 
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="flex-1 bg-[#0F0F13] p-3 rounded-full border border-[#2A2A35] focus:outline-none focus:border-[#FF3366]"
+            value={input} 
+            onChange={(e) => setInput(e.target.value)} 
+            className="flex-1 bg-[#0F0F13] p-3 rounded-full outline-none"
             placeholder="Schreibe eine Nachricht..."
           />
-          <button onClick={sendMessage} className="px-6 bg-[#FF3366] rounded-full font-bold">Senden</button>
+          <button onClick={handleSend} className="bg-[#FF3366] px-6 py-2 rounded-full font-bold">Senden</button>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }

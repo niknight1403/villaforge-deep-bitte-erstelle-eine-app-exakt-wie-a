@@ -3,9 +3,26 @@
   "version": "1.0.0",
   "description": "Companion AI Platform",
   "scripts": {
-    "build": "node -e \"console.log('Build simulated: Static assets ready.')\"",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "node tests/run.mjs",
     "smoke": "node tests/smoke.mjs"
   },
-  "dependencies": {}
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "framer-motion": "latest",
+    "zustand": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "tailwindcss": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest"
+  }
 }
