@@ -1,12 +1,14 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "Companion platform clone",
-  "main": "index.js",
+  "description": "Standalone PWA clone of mybabes.ai",
   "scripts": {
-    "build": "node scripts/build.js",
-    "test": "node --test tests/*.test.js",
-    "smoke": "node scripts/smoke.js"
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "smoke": "node tests/smoke.mjs"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "framer-motion": "latest",
+    "tailwindcss": "latest"
+  }
 }
