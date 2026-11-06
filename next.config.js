@@ -1,12 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    domains: ['localhost'],
+    domains: ['images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        maxInitialRequests: 25,
+        minSize: 20000,
+      };
+    }
+    return config;
   },
 };
 
