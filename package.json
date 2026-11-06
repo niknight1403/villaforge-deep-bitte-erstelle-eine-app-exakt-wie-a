@@ -1,12 +1,11 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "Companion Platform Klon",
+  "description": "Companion platform clone",
   "scripts": {
-    "build": "echo 'Build-Prozess abgeschlossen: Statische Assets bereit.'",
+    "build": "node -e \"console.log('Build successful: Static assets ready')\"",
     "test": "node tests/run.mjs",
-    "smoke": "node tests/run.mjs"
+    "start": "node server.js"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {}
 }
