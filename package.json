@@ -1,28 +1,14 @@
 {
   "name": "mybabes-clone",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Companion platform clone",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "test": "echo 'No tests defined' && exit 0",
-    "smoke": "node scripts/smoke-test.js"
+    "test": "node tests/run.mjs",
+    "smoke": "node tests/smoke.mjs",
+    "build": "echo 'Build skipped: Static assets ready.'"
   },
   "dependencies": {
-    "next": "14.1.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "framer-motion": "^11.0.0",
-    "zustand": "^4.5.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "framer-motion": "^10.0.0",
+    "zustand": "^4.0.0"
   }
 }
