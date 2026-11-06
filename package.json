@@ -2,12 +2,14 @@
   "name": "mybabes-clone",
   "version": "1.0.0",
   "description": "Companion platform clone",
+  "main": "index.js",
   "scripts": {
-    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
+    "build": "node scripts/build.js",
     "test": "node --test tests/*.test.js",
-    "smoke": "node tests/smoke.test.js"
+    "smoke": "node tests/smoke.js"
   },
-  "dependencies": {
-    "framer-motion": "^10.0.0"
+  "devDependencies": {
+    "framer-motion": "^10.0.0",
+    "zustand": "^4.0.0"
   }
 }
