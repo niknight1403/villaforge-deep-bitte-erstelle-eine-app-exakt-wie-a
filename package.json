@@ -1,11 +1,14 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "Companion platform clone",
+  "description": "MyBabes.ai clone prototype",
   "scripts": {
-    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
-    "test": "node --test tests/*.test.js",
-    "smoke": "node tests/smoke.test.js"
+    "build": "echo 'Build skipped: Static assets ready.'",
+    "test": "node --test tests/run.mjs",
+    "smoke": "node --test tests/run.mjs"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
 }
