@@ -1,6 +1,7 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
+  "description": "Companion AI Platform",
   "scripts": {
     "build": "node -e \"console.log('Build skipped: Static assets ready')\"",
     "test": "node tests/run.mjs",
