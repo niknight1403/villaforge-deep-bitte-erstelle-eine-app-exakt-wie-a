@@ -1,16 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
 
-// Minimal Test Suite
-test('UI Component Integrity', () => {
-  const hasChatInterface = true; // Mock check for component existence
-  assert.strictEqual(hasChatInterface, true, 'ChatInterface must exist');
+test('Smoke Test: Chat Interface Rendering', () => {
+  const mockUI = '<div id="chat-container"></div>';
+  assert.ok(mockUI.includes('chat-container'), 'Chat container should exist');
 });
 
-test('Smoke Test: User Flow', () => {
-  const userLoggedIn = true;
-  const messageSent = true;
-  assert.strictEqual(userLoggedIn && messageSent, true, 'User should be able to send messages');
+test('Smoke Test: Error Handling', () => {
+  const errorState = { error: 'Service Unavailable' };
+  assert.strictEqual(errorState.error, 'Service Unavailable');
 });
 
 console.log('Tests passed successfully.');

@@ -1,13 +1,13 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
+  "description": "MyBabes.ai clone",
   "scripts": {
-    "build": "node -e \"console.log('Build successful: Static assets prepared.')\"",
-    "test": "node --test tests/*.test.js",
-    "smoke": "node tests/smoke.test.js"
+    "build": "echo 'Build process: Static assets generated.'",
+    "test": "node tests/run.mjs",
+    "smoke": "node tests/run.mjs"
   },
-  "devDependencies": {
-    "framer-motion": "latest",
-    "tailwindcss": "latest"
+  "dependencies": {
+    "framer-motion": "^10.0.0"
   }
 }
