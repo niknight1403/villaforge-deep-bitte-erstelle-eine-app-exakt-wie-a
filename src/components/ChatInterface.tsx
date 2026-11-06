@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function ChatInterface() {
-  const [messages, setMessages] = useState([{ sender: 'ai', text: 'Hello, I am your companion. How are you?' }]);
+  const [messages, setMessages] = useState([{ id: 1, text: 'Hi, I am your companion. How are you?', sender: 'ai' }]);
   const [input, setInput] = useState('');
 
   const sendMessage = () => {
     if (!input.trim()) return;
-    setMessages([...messages, { sender: 'user', text: input }]);
+    setMessages([...messages, { id: Date.now(), text: input, sender: 'user' }]);
     setInput('');
   };
 
@@ -17,24 +17,28 @@ export default function ChatInterface() {
         <div className="w-10 h-10 rounded-full bg-[#FF3366]" />
         <div>
           <h1 className="font-bold">Companion</h1>
-          <span className="text-xs text-green-500">Online</span>
+          <span className="text-xs text-green-500">● Online</span>
         </div>
       </header>
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((m, i) => (
-          <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`p-3 rounded-lg ${m.sender === 'user' ? 'bg-[#FF3366] ml-auto' : 'bg-[#1A1A22]'}`}>
+        {messages.map((m) => (
+          <motion.div 
+            key={m.id} 
+            initial={{ opacity: 0, y: 10 }} 
+            animate={{ opacity: 1, y: 0 }}
+            className={`p-3 rounded-lg max-w-[80%] ${m.sender === 'user' ? 'bg-[#FF3366] ml-auto' : 'bg-[#1A1A22]'}`}>
             {m.text}
           </motion.div>
         ))}
       </div>
-      <div className="p-4 border-t border-[#1A1A22] flex gap-2">
+      <div className="p-4 bg-[#1A1A22] flex gap-2">
         <input 
-          className="flex-1 bg-[#1A1A22] p-2 rounded outline-none"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
+          className="flex-1 bg-transparent border-none outline-none"
+          value={input} 
+          onChange={(e) => setInput(e.target.value)} 
+          placeholder="Type a message..." 
         />
-        <button onClick={sendMessage} className="bg-[#FF3366] px-4 py-2 rounded">Send</button>
+        <button onClick={sendMessage} className="text-[#FF3366] font-bold">Send</button>
       </div>
     </div>
   );
