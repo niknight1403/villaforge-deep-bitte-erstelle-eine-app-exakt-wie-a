@@ -1,24 +1,26 @@
 const http = require('http');
 
-async function runSmokeTest() {
-  console.log('Starting Smoke Test...');
-  // Simulate a local server check
-  try {
-    // In a real environment, we would trigger 'npm run dev' and fetch localhost:3000
-    // Here we verify the existence of critical UI components
-    const fs = require('fs');
-    const exists = fs.existsSync('./src/components/ChatInterface.tsx');
-    if (exists) {
-      console.log('SUCCESS: ChatInterface component found.');
-      process.exit(0);
-    } else {
-      console.error('FAILURE: ChatInterface component missing.');
-      process.exit(1);
-    }
-  } catch (err) {
-    console.error('Smoke Test Error:', err);
+const options = {
+  hostname: 'localhost',
+  port: 3000,
+  path: '/',
+  method: 'GET'
+};
+
+const req = http.request(options, (res) => {
+  console.log(`Status Code: ${res.statusCode}`);
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    console.log('Smoke Test Passed: App is reachable.');
+    process.exit(0);
+  } else {
+    console.error('Smoke Test Failed: Unexpected status code.');
     process.exit(1);
   }
-}
+});
 
-runSmokeTest();
+req.on('error', (e) => {
+  console.error(`Smoke Test Failed: ${e.message}`);
+  process.exit(1);
+});
+
+req.end();
