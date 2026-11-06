@@ -1,0 +1,17 @@
+{
+  "build": {
+    "cmd": "node build_static.mjs"
+  },
+  "test": {
+    "cmd": "node scripts/test.js"
+  },
+  "smoke": {
+    "cmd": "node scripts/smoke.js"
+  },
+  "quality": {
+    "cmd": "node scripts/quality.js"
+  },
+  "verify": {
+    "cmd": "node scripts/test.js && node scripts/quality.js && node scripts/smoke.js"
+  }
+}
