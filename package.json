@@ -1,11 +1,11 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "Companion AI Platform",
+  "description": "Companion platform clone",
   "scripts": {
-    "build": "echo 'Build skipped: Static assets ready.'",
-    "test": "node tests/run.mjs",
-    "smoke": "node tests/smoke.mjs"
+    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
+    "test": "node --test tests/*.test.js",
+    "smoke": "node tests/smoke.test.js"
   },
   "dependencies": {
     "framer-motion": "^10.0.0"
