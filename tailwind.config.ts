@@ -1,15 +1,22 @@
-// tailwind.config.ts
-module.exports = {
-  purge: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    './public/index.html',
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      colors: {
+        background: '#0F0F13',
+        card: '#1A1A22',
+        primary: '#FF3366',
+        textPrimary: '#FFFFFF',
+        textSecondary: '#A0A0B0',
+      },
+    },
   },
   plugins: [],
-}
+};
+export default config;
