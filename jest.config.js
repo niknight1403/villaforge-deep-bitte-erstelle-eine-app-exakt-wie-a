@@ -1,8 +1,10 @@
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts'
-  ]
+  testEnvironment: 'jest-environment-jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+  },
+  transform: {
+    '^.+\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+  },
 };
