@@ -1,22 +1,26 @@
 const http = require('http');
 
-const PORT = 3000;
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ status: 'ok', flow: 'chat-interface' }));
+const options = {
+  hostname: 'localhost',
+  port: 3000,
+  path: '/',
+  method: 'GET',
+};
+
+const req = http.request(options, (res) => {
+  console.log(`STATUS: ${res.statusCode}`);
+  if (res.statusCode === 200 || res.statusCode === 404) {
+    console.log('Smoke test passed: Server reachable.');
+    process.exit(0);
+  } else {
+    console.error('Smoke test failed: Unexpected status.');
+    process.exit(1);
+  }
 });
 
-server.listen(PORT, () => {
-  console.log('Smoke test server running...');
-  const req = http.request(`http://localhost:${PORT}`, (res) => {
-    if (res.statusCode === 200) {
-      console.log('Smoke test passed: UI flow reachable.');
-      process.exit(0);
-    } else {
-      console.error('Smoke test failed.');
-      process.exit(1);
-    }
-  });
-  req.on('error', () => process.exit(1));
-  req.end();
+req.on('error', (e) => {
+  console.error(`Smoke test failed: ${e.message}`);
+  process.exit(1);
 });
+
+req.end();
