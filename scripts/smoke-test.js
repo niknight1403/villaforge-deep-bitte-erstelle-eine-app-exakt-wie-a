@@ -1,15 +1,25 @@
-async function runSmokeTest() {
-  console.log('Starting Smoke Test: User Flow Verification...');
-  try {
-    const mockUserFlow = { step: 'Chat-Interface', status: 'active', component: 'ChatInterface' };
-    if (mockUserFlow.component === 'ChatInterface') {
-      console.log('SUCCESS: Chat-Interface component loaded.');
-      console.log('SUCCESS: User flow navigation verified.');
-      process.exit(0);
-    }
-  } catch (err) {
-    console.error('FAILED: Smoke test error:', err);
+const http = require('http');
+
+const options = {
+  hostname: 'localhost',
+  port: 3000,
+  path: '/',
+  method: 'GET'
+};
+
+const req = http.request(options, (res) => {
+  console.log(`STATUS: ${res.statusCode}`);
+  if (res.statusCode === 200 || res.statusCode === 404) {
+    console.log('Smoke test passed: Server responded.');
+    process.exit(0);
+  } else {
     process.exit(1);
   }
-}
-runSmokeTest();
+});
+
+req.on('error', (e) => {
+  console.error(`Smoke test failed: ${e.message}`);
+  process.exit(1);
+});
+
+req.end();

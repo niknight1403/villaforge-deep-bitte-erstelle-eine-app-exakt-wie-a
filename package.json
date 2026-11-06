@@ -1,15 +1,13 @@
 {
   "name": "mybabes-clone",
   "version": "1.0.0",
-  "description": "MyBabes AI Companion Clone",
-  "main": "index.js",
+  "description": "Standalone PWA clone of mybabes.ai",
   "scripts": {
-    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
-    "test": "node --test tests/*.test.js",
-    "smoke": "node tests/smoke.test.js"
+    "build": "node scripts/build.js",
+    "test": "node tests/run.mjs",
+    "smoke": "node tests/smoke.mjs"
   },
   "dependencies": {
-    "framer-motion": "^10.0.0",
-    "zustand": "^4.0.0"
+    "framer-motion": "^10.0.0"
   }
 }
