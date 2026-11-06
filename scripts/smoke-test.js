@@ -10,9 +10,10 @@ const options = {
 const req = http.request(options, (res) => {
   console.log(`STATUS: ${res.statusCode}`);
   if (res.statusCode === 200 || res.statusCode === 404) {
-    console.log('Smoke test passed: Server responded.');
+    console.log('Smoke test passed: Server reachable.');
     process.exit(0);
   } else {
+    console.error('Smoke test failed.');
     process.exit(1);
   }
 });
