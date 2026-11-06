@@ -1,13 +1,1 @@
-{
-  "name": "mybabes-clone",
-  "version": "1.0.0",
-  "description": "MyBabes.ai style companion app",
-  "scripts": {
-    "build": "node -e \"console.log('Build simulation: Static assets prepared.')\"",
-    "test": "node --test tests/*.test.js",
-    "smoke": "node tests/smoke.test.js"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0"
-  }
-}
+{"name": "my-project", "version": "1.0.0", "description": "My project", "main": "index.js", "scripts": {"test": "echo \
