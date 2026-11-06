@@ -1,1 +1,10 @@
-export default function Home() { return <main className="min-h-screen bg-[#0F0F13] text-white p-4"><h1>MyBabes Clone</h1><p>Interface loading...</p></main>; }
+import React from 'react';
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#0F0F13] text-white">
+      <h1 className="text-4xl font-bold">Willkommen bei MyBabes Clone</h1>
+      <p className="mt-4 text-[#A0A0B0]">Die Plattform wird initialisiert...</p>
+    </main>
+  );
+}

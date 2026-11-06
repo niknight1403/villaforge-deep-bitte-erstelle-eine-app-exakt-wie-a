@@ -5,6 +5,6 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/$1',
   },
   transform: {
-    '^.+\.(ts|tsx)$': 'ts-jest',
+    '^.+\.(t|j)sx?$': ['ts-jest', { tsconfig: 'tsconfig.json' }],
   },
 };
