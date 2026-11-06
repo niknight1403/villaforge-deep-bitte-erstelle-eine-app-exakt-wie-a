@@ -6,5 +6,5 @@
     "test": "node tests/run.mjs",
     "smoke": "node tests/smoke.mjs"
   },
-  "devDependencies": {}
+  "dependencies": {}
 }
