@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: ['images.unsplash.com'],
+    deviceSizes: [640, 750, 828, 1080, 1200],
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react'],
+    optimizeCss: true,
+    scrollRestoration: true,
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
