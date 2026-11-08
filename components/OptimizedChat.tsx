@@ -8,6 +8,10 @@ import { motion } from 'framer-motion';
 export const OptimizedChat = () => {
   const [messages, setMessages] = useState<{id: number, text: string, sender: 'user' | 'ai'}[]>([]);
 
+  const addMessage = React.useCallback((msg: {id: number, text: string, sender: 'user' | 'ai'}) => {
+    setMessages((prev) => [...prev, msg]);
+  }, []);
+
   useEffect(() => {
     // Initial mock message
     setMessages([{ id: 1, text: 'Hello! How can I help you today?', sender: 'ai' }]);
