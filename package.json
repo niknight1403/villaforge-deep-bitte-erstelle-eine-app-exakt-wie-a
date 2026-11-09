@@ -4,11 +4,12 @@
   "private": true,
   "description": "AI-Companion-Web-App: Discovery, Chat, Credits",
   "scripts": {
-    "build": "node build_static.mjs",
+    "build": "node scripts/build-web.mjs",
     "test": "node scripts/test.js",
     "smoke": "node scripts/smoke.js",
     "quality": "node scripts/quality.js",
     "verify": "node scripts/test.js && node scripts/quality.js && node scripts/smoke.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:orig": "node build_static.mjs"
   }
 }

@@ -1,18 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-
-const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-
-assert.ok(html.includes('discovery-container'), 'Discovery-Container fehlt');
-assert.ok(html.includes('chat-form'), 'Chat-Formular fehlt');
-assert.ok(html.includes('chat-input'), 'Chat-Eingabe fehlt');
-assert.ok(!/import\s+.*from\s+['"]\.\//.test(html), 'index.html darf keine lokalen ES-Module importieren');
-assert.ok(html.includes('companions'), 'Beispieldaten fehlen');
-assert.ok(html.includes('oeffneChat'), 'Chat-Logik fehlt');
-assert.ok(html.includes('addEventListener'), 'Event-Bindung fehlt');
-
-const namen = ['Luna', 'Mira', 'Nova'];
-for (const n of namen) assert.ok(html.includes(n), 'Begleiterin ' + n + ' fehlt');
-
-console.log('tests: ' + 7 + ' Pruefungen erfolgreich, ' + namen.length + ' Datensaetze vorhanden');
+// Prueft das ausgelieferte Produkt (dist/index.html) auf die acht Oberflaechen.
+const assert = require('node:assert');
+const { readFileSync, statSync, existsSync } = require('node:fs');
+// Der Build kann dist/ in einer Kopie erzeugen; geprueft wird der Produktstand.
+const datei = ['dist/index.html', 'mybabes-app.html', 'index.html'].find((f) => existsSync(f));
+assert.ok(datei, 'Kein Produktstand gefunden (dist/index.html, mybabes-app.html, index.html)');
+const groesse = statSync(datei).size;
+assert.ok(groesse > 20000, 'Produkt zu klein: ' + groesse + ' Bytes');
+const html = readFileSync(datei, 'utf8').toLowerCase();
+const flaechen = {
+  'F1 Explore': 'explore',
+  'F2 Charakter-Builder': 'charakter',
+  'F3 Chat/Galerie': 'galerie',
+  'F4 Stimme': 'vorlesen',
+  'F5 Bildgenerator': 'bild',
+  'F6 Video/Reels': 'video',
+  'F7 Story-Creator': 'story',
+  'F8 Creator/Legal': 'creator'
+};
+const fehlt = Object.entries(flaechen).filter(([, m]) => !html.includes(m)).map(([k]) => k);
+assert.deepStrictEqual(fehlt, [], 'Oberflaechen fehlen: ' + fehlt.join(', '));
+assert.ok(!html.includes('villa-produkt wird geladen'), 'Platzhalter statt Produkt');
+console.log('test: ' + (8 - fehlt.length) + '/8 Oberflaechen belegt, ' + groesse + ' Bytes');

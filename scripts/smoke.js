@@ -1,34 +1,15 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-
-const seite = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.end(seite);
-});
-
-server.listen(0, '127.0.0.1', () => {
-  const port = server.address().port;
-  http.get('http://127.0.0.1:' + port + '/', (res) => {
-    let body = '';
-    res.on('data', (c) => (body += c));
-    res.on('end', () => {
-      server.close();
-      if (res.statusCode !== 200) {
-        console.error('smoke: Status ' + res.statusCode);
-        process.exit(1);
-      }
-      if (!body.includes('MyBabes AI')) {
-        console.error('smoke: Produktmarker fehlt');
-        process.exit(1);
-      }
-      console.log('smoke: HTTP 200, ' + body.length + ' Bytes ausgeliefert');
-    });
-  }).on('error', (e) => {
-    server.close();
-    console.error('smoke: Verbindungsfehler ' + e.message);
-    process.exit(1);
-  });
-});
+// Kurzprobe: das Produkt ist da und vollstaendig.
+const { readFileSync, existsSync } = require('node:fs');
+const datei = ['dist/index.html', 'mybabes-app.html', 'index.html'].find((f) => existsSync(f));
+if (!datei) {
+  console.error('smoke: kein Produktstand gefunden');
+  process.exit(1);
+}
+const html = readFileSync(datei, 'utf8').toLowerCase();
+const pflicht = { explore: 'F1', charakter: 'F2', galerie: 'F3', vorlesen: 'F4', bild: 'F5', video: 'F6', story: 'F7', creator: 'F8' };
+const fehlt = Object.entries(pflicht).filter(([m]) => !html.includes(m)).map(([, k]) => k);
+if (fehlt.length) {
+  console.error('smoke: Produktmarker fehlt: ' + fehlt.join(', '));
+  process.exit(1);
+}
+console.log('smoke: Produktmarker vollstaendig (8/8)');

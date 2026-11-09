@@ -1,0 +1,14 @@
+{
+  "name": "mybabes-clone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-Companion-Web-App: Discovery, Chat, Credits",
+  "scripts": {
+    "build": "node build_static.mjs",
+    "test": "node scripts/test.js",
+    "smoke": "node scripts/smoke.js",
+    "quality": "node scripts/quality.js",
+    "verify": "node scripts/test.js && node scripts/quality.js && node scripts/smoke.js",
+    "start": "node server.js"
+  }
+}
