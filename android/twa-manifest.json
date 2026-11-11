@@ -1,0 +1,14 @@
+{
+  "packageId": "com.aurora.companion.studio",
+  "host": "aurora-companion.studio",
+  "name": "Aurora Companion Studio",
+  "launcherName": "Aurora",
+  "themeColor": "#0F0F13",
+  "backgroundColor": "#0F0F13",
+  "enableNotifications": true,
+  "shortcuts": [],
+  "signingKey": {
+    "path": "android.keystore",
+    "alias": "aurora"
+  }
+}
