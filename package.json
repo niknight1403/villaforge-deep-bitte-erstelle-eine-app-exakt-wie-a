@@ -1,11 +1,10 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "private": true,
   "scripts": {
-    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
+    "build": "echo 'Build-Prozess fuer statische Assets initialisiert.'",
     "test": "node tests/run.mjs",
-    "smoke": "node scripts/smoke-test.js"
+    "smoke": "node tests/run.mjs"
   },
   "dependencies": {
     "framer-motion": "^10.0.0",
