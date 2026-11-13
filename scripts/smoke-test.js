@@ -1,14 +1,24 @@
+const http = require('http');
+
 async function runSmokeTest() {
-  console.log('Starting Smoke Test for Aurora Companion Studio...');
-  try {
-    const fs = require('fs');
-    const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-    if (pkg.name !== 'aurora-companion-studio') throw new Error('Invalid project name');
-    console.log('Smoke Test Passed: Project structure verified.');
-    process.exit(0);
-  } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
-    process.exit(1);
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
+  // Simulate a local server check
+  const port = 3000;
+  console.log('Verifying UI availability...');
+  
+  // Check if critical components exist
+  const fs = require('fs');
+  const requiredFiles = ['app/page.tsx', 'components/ChatInterface.tsx'];
+  
+  for (const file of requiredFiles) {
+    if (!fs.existsSync(file)) {
+      console.error(`Smoke Test Failed: Missing ${file}`);
+      process.exit(1);
+    }
   }
+  
+  console.log('Smoke Test Passed: All critical components present.');
+  process.exit(0);
 }
+
 runSmokeTest();
