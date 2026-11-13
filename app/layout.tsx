@@ -1,15 +1,20 @@
-import './globals.css';
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Aurora Companion Studio',
-  description: 'Virtuelle Begleiterinnen für anspruchsvolle Nutzer.',
+  description: 'Exklusive virtuelle Begleiterinnen.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de">
-      <body className="bg-[#0F0F13] text-white">{children}</body>
+    <html lang="de" className="dark">
+      <body className={`${inter.className} bg-[#0F0F13] text-white min-h-screen`}>
+        {children}
+      </body>
     </html>
   );
 }
