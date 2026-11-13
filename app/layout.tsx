@@ -1,12 +1,15 @@
-// Layout file for the application
-import React from 'react';
+import './globals.css';
+import type { Metadata } from 'next';
 
-const Layout: React.FC = ({ children }) => {
-  return (
-    <div className="layout">
-      {children}
-    </div>
-  );
+export const metadata: Metadata = {
+  title: 'Aurora Companion Studio',
+  description: 'Virtuelle Begleiterinnen für anspruchsvolle Nutzer.',
 };
 
-export default Layout;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="de">
+      <body className="bg-[#0F0F13] text-white">{children}</body>
+    </html>
+  );
+}

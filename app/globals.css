@@ -3,10 +3,19 @@
 @tailwind utilities;
 
 body {
+  font-family: 'Inter', sans-serif;
   background-color: #0F0F13;
   color: #FFFFFF;
 }
 
-* {
-  box-sizing: border-box;
+.card-bg {
+  background-color: #1A1A22;
+}
+
+.accent-color {
+  color: #FF3366;
+}
+
+.accent-bg {
+  background-color: #FF3366;
 }
