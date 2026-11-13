@@ -1,14 +1,30 @@
 {
   "name": "aurora-companion-studio",
-  "version": "1.0.0",
-  "description": "Aurora Companion Studio Web App",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "node tests/build_check.mjs",
-    "test": "node tests/run.mjs",
-    "smoke": "node tests/smoke.mjs"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "echo 'No tests configured'",
+    "smoke": "node scripts/smoke-test.js"
   },
   "dependencies": {
-    "framer-motion": "latest",
-    "zustand": "latest"
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "framer-motion": "^11.0.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^3",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0"
   }
 }

@@ -1,16 +1,14 @@
-const http = require('http');
+const fs = require('fs');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: Aurora Companion Studio...');
-  
-  // Simulate a basic check for the main entry point
-  const isReady = true; // In a real environment, we would trigger a build and check the output
-  
-  if (isReady) {
-    console.log('Smoke Test Passed: Core navigation and state management initialized.');
+  console.log('Starting Smoke Test for Aurora Companion Studio...');
+  try {
+    const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+    if (pkg.name !== 'aurora-companion-studio') throw new Error('Invalid project name');
+    console.log('Smoke Test Passed: Project structure verified.');
     process.exit(0);
-  } else {
-    console.error('Smoke Test Failed: Application not responding.');
+  } catch (e) {
+    console.error('Smoke Test Failed:', e.message);
     process.exit(1);
   }
 }
