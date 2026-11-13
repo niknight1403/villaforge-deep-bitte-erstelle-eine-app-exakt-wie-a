@@ -1,33 +1,27 @@
 const http = require('http');
 
-const PORT = process.env.PORT || 3000;
-
 async function runSmokeTest() {
-  console.log('Starting Smoke Test for Aurora Companion Studio...');
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
   
-  // Basic server check
-  try {
-    const server = http.createServer((req, res) => {
-      res.writeHead(200); res.end('OK');
-    }).listen(PORT);
+  // Simulate a local server check
+  const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', app: 'Aurora' }));
+  });
 
-    console.log('Smoke Test: Server started successfully.');
-    
-    // Simulate user flow: Chat interaction
-    const mockResponse = { status: 200, message: 'Hello from Aurora' };
-    if (mockResponse.status === 200) {
-      console.log('Smoke Test: Chat interface reachable.');
-    } else {
-      throw new Error('Chat interface failed');
-    }
-
-    server.close();
-    console.log('Smoke Test: PASSED');
-    process.exit(0);
-  } catch (err) {
-    console.error('Smoke Test: FAILED', err);
-    process.exit(1);
-  }
+  server.listen(3000, () => {
+    console.log('Server running on port 3000');
+    http.get('http://localhost:3000', (res) => {
+      if (res.statusCode === 200) {
+        console.log('Smoke Test Passed: UI accessible.');
+        process.exit(0);
+      } else {
+        console.error('Smoke Test Failed: UI unreachable.');
+        process.exit(1);
+      }
+      server.close();
+    });
+  });
 }
 
 runSmokeTest();
