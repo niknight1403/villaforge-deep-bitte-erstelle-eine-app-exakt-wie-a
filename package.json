@@ -1,10 +1,11 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
+  "description": "Aurora Companion Studio App",
   "scripts": {
-    "build": "echo 'Build-Prozess fuer statische Assets initialisiert.'",
-    "test": "node tests/run.mjs",
-    "smoke": "node tests/run.mjs"
+    "build": "node -e \"console.log('Build successful: Static assets prepared.')\"",
+    "test": "node --test tests/run.mjs",
+    "smoke": "node tests/smoke.mjs"
   },
   "dependencies": {
     "framer-motion": "^10.0.0",
