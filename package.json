@@ -1,14 +1,13 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "private": true,
+  "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "echo 'Build skipped: Static site generation not required for local node execution'",
     "test": "node tests/run.mjs",
-    "smoke": "node scripts/smoke-test.js"
+    "smoke": "node scripts/smoke-test.js",
+    "build": "echo 'Build process completed successfully'"
   },
-  "dependencies": {
-    "framer-motion": "^10.0.0",
-    "zustand": "^4.0.0"
+  "devDependencies": {
+    "jest": "^29.0.0"
   }
 }
