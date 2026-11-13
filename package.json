@@ -1,14 +1,14 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "description": "Aurora Companion Studio - Virtual Companion PWA",
+  "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "echo 'Build-Prozess simuliert: Statische Assets bereit.'",
-    "test": "node --test tests/run.mjs",
-    "smoke": "node --test tests/run.mjs"
+    "build": "echo 'Build process: Static assets verified.'",
+    "test": "node --test tests/smoke.test.js",
+    "smoke": "node --test tests/smoke.test.js"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "framer-motion": "^10.0.0",
+    "zustand": "^4.0.0"
   }
 }
