@@ -1,8 +1,9 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "build": "echo 'Build process: Static site generation skipped, using raw files.'",
+    "build": "echo 'Build skipped: Static site generation not required for local node execution'",
     "test": "node tests/run.mjs",
     "smoke": "node scripts/smoke-test.js"
   },

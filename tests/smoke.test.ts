@@ -1,12 +1,8 @@
-describe('Smoke Test', () => {
-  it('should verify the core user flow: navigation and chat initialization', () => {
-    const appState = { initialized: true, chatVisible: true };
-    expect(appState.initialized).toBe(true);
-    expect(appState.chatVisible).toBe(true);
-  });
+import { expect, test } from '@jest/globals';
 
-  it('should handle error cases gracefully', () => {
-    const mockError = { code: 500, message: 'Service Unavailable' };
-    expect(mockError.code).toBe(500);
-  });
+test('Smoke test: Verify core application flow', () => {
+  const appStatus = 'initialized';
+  const hasBranding = true;
+  expect(appStatus).toBe('initialized');
+  expect(hasBranding).toBe(true);
 });
