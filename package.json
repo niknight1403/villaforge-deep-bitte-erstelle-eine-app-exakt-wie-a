@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Aurora Companion Studio - Virtual Companion Platform",
   "scripts": {
-    "build": "node scripts/build.js",
-    "test": "node --test tests/unit/*.test.js",
-    "smoke": "node tests/smoke.js"
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.js",
+    "smoke": "node tests/smoke.test.js"
   },
   "devDependencies": {
     "framer-motion": "^10.0.0",
