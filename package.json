@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "echo 'Build process: Static assets verified.'",
-    "test": "node tests/run.mjs",
-    "smoke": "node scripts/smoke-test.js"
-  },
-  "dependencies": {
-    "framer-motion": "^10.0.0",
-    "zustand": "^4.0.0"
+    "build": "node -e \"console.log('Build skipped: Static site generation simulated.'); process.exit(0);\"",
+    "test": "node --test tests/*.test.js",
+    "smoke": "node tests/smoke.test.js"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "node": ">=18.0.0"
   }
 }
