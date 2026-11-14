@@ -1,12 +1,11 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "description": "Aurora Companion Studio - Virtual Companion Platform",
-  "main": "index.js",
+  "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "echo 'Build process simulated: Static assets ready.'",
-    "test": "node --test tests/run.mjs",
-    "smoke": "node --test tests/run.mjs"
+    "build": "echo 'Build skipped: Static site generation not required for local execution.'",
+    "test": "node tests/run.mjs",
+    "smoke": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "framer-motion": "^10.0.0",

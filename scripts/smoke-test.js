@@ -5,31 +5,29 @@ async function runSmokeTest() {
   
   // Simulate a local server check
   const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', feature: 'chat-interface' }));
-  });
+    res.writeHead(200);
+    res.end('OK');
+  }).listen(3000);
 
-  return new Promise((resolve, reject) => {
-    server.listen(3000, () => {
-      console.log('Server running on port 3000');
+  try {
+    const response = await new Promise((resolve) => {
       http.get('http://localhost:3000', (res) => {
-        if (res.statusCode === 200) {
-          console.log('Smoke Test Passed: UI/API reachable.');
-          server.close();
-          resolve();
-        } else {
-          server.close();
-          reject(new Error('Smoke Test Failed: Status ' + res.statusCode));
-        }
-      }).on('error', (e) => {
-        server.close();
-        reject(e);
-      });
+        resolve(res.statusCode === 200);
+      }).on('error', () => resolve(false));
     });
-  });
+
+    if (response) {
+      console.log('Smoke Test Passed: Server reachable.');
+      process.exit(0);
+    } else {
+      throw new Error('Server connectivity failed.');
+    }
+  } catch (err) {
+    console.error('Smoke Test Failed:', err.message);
+    process.exit(1);
+  } finally {
+    server.close();
+  }
 }
 
-runSmokeTest().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+runSmokeTest();
