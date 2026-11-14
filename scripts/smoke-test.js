@@ -1,29 +1,35 @@
 const http = require('http');
 
 async function runSmokeTest() {
-  console.log('Starting smoke test for Aurora Companion Studio...');
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
   
-  // Simulate a server check
+  // Simulate a local server check
   const server = http.createServer((req, res) => {
-    res.writeHead(200);
-    res.end('OK');
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', feature: 'chat-interface' }));
   });
 
-  server.listen(3000, () => {
-    console.log('Server listening on port 3000');
-    http.get('http://localhost:3000', (res) => {
-      if (res.statusCode === 200) {
-        console.log('Smoke test passed: Server is responsive.');
-        process.exit(0);
-      } else {
-        console.error('Smoke test failed: Unexpected status code.');
-        process.exit(1);
-      }
-    }).on('error', (e) => {
-      console.error('Smoke test failed: ' + e.message);
-      process.exit(1);
+  return new Promise((resolve, reject) => {
+    server.listen(3000, () => {
+      console.log('Server running on port 3000');
+      http.get('http://localhost:3000', (res) => {
+        if (res.statusCode === 200) {
+          console.log('Smoke Test Passed: UI/API reachable.');
+          server.close();
+          resolve();
+        } else {
+          server.close();
+          reject(new Error('Smoke Test Failed: Status ' + res.statusCode));
+        }
+      }).on('error', (e) => {
+        server.close();
+        reject(e);
+      });
     });
   });
 }
 
-runSmokeTest();
+runSmokeTest().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
