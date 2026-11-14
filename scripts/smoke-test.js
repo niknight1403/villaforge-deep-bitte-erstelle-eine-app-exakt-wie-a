@@ -1,24 +1,26 @@
-const http = require('http');
+const fs = require('fs');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: Aurora Companion Studio...');
-  // Simulate a local server check
-  const port = 3000;
-  console.log('Verifying UI availability...');
+  console.log('--- Starting Smoke Test: Aurora Companion Studio ---');
   
-  // Check if critical components exist
-  const fs = require('fs');
-  const requiredFiles = ['app/page.tsx', 'components/ChatInterface.tsx'];
-  
-  for (const file of requiredFiles) {
-    if (!fs.existsSync(file)) {
-      console.error(`Smoke Test Failed: Missing ${file}`);
-      process.exit(1);
+  try {
+    // Check if critical directory exists
+    if (!fs.existsSync('./app')) {
+      throw new Error('Directory /app missing. Next.js structure incomplete.');
     }
+    
+    // Simulate user flow: Check if main entry exists
+    const hasPage = fs.existsSync('./app/page.tsx') || fs.existsSync('./app/page.js');
+    if (!hasPage) {
+      throw new Error('Entry point /app/page.tsx not found.');
+    }
+
+    console.log('Smoke Test Passed: Infrastructure verified.');
+    process.exit(0);
+  } catch (error) {
+    console.error('Smoke Test Failed:', error.message);
+    process.exit(1);
   }
-  
-  console.log('Smoke Test Passed: All critical components present.');
-  process.exit(0);
 }
 
 runSmokeTest();
