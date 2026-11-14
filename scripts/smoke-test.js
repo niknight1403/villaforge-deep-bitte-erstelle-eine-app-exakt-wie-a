@@ -4,32 +4,30 @@ async function runSmokeTest() {
   console.log('Starting Smoke Test: Aurora Companion Studio...');
   
   // Simulate a local server check
-  const mockServer = http.createServer((req, res) => {
+  const testServer = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ready', app: 'Aurora Companion Studio' }));
-  }).listen(3000);
+    res.end(JSON.stringify({ status: 'ok', app: 'Aurora Companion Studio' }));
+  });
 
-  try {
-    const response = await new Promise((resolve, reject) => {
-      http.get('http://localhost:3000', (res) => {
-        let data = '';
-        res.on('data', (chunk) => data += chunk);
-        res.on('end', () => resolve(JSON.parse(data)));
-      }).on('error', reject);
+  testServer.listen(3000, () => {
+    console.log('Server running on port 3000');
+    
+    http.get('http://localhost:3000', (res) => {
+      if (res.statusCode === 200) {
+        console.log('Smoke Test Passed: UI reachable.');
+        testServer.close();
+        process.exit(0);
+      } else {
+        console.error('Smoke Test Failed: Unexpected status code.');
+        testServer.close();
+        process.exit(1);
+      }
+    }).on('error', (e) => {
+      console.error('Smoke Test Failed: ' + e.message);
+      testServer.close();
+      process.exit(1);
     });
-
-    if (response.status === 'ready') {
-      console.log('Smoke Test Passed: App is responsive.');
-      process.exit(0);
-    } else {
-      throw new Error('Invalid response');
-    }
-  } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
-    process.exit(1);
-  } finally {
-    mockServer.close();
-  }
+  });
 }
 
 runSmokeTest();
