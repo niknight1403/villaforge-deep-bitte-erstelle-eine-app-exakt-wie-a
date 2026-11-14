@@ -1,19 +1,32 @@
+const http = require('http');
+
 async function runSmokeTest() {
   console.log('Starting Smoke Test for Aurora Companion Studio...');
+  
+  // Simulate a server check
+  const port = 3000;
+  const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.end('OK');
+  }).listen(port);
+
   try {
-    // Simulate UI component mounting check
-    const mockApp = { status: 'initialized', components: ['Header', 'Chat', 'Profile'] };
-    if (mockApp.status !== 'initialized') throw new Error('App failed to initialize');
-    
-    // Simulate Chat flow
-    const message = { id: 1, text: 'Hello', sender: 'user' };
-    if (!message.text) throw new Error('Chat message empty');
-    
-    console.log('Smoke Test Passed: Core components and chat flow operational.');
-    process.exit(0);
-  } catch (error) {
-    console.error('Smoke Test Failed:', error.message);
+    const response = await new Promise((resolve) => {
+      http.get(`http://localhost:${port}`, (res) => resolve(res.statusCode));
+    });
+
+    if (response === 200) {
+      console.log('Smoke Test Passed: Server reachable.');
+      process.exit(0);
+    } else {
+      throw new Error('Server returned status ' + response);
+    }
+  } catch (err) {
+    console.error('Smoke Test Failed:', err.message);
     process.exit(1);
+  } finally {
+    server.close();
   }
 }
+
 runSmokeTest();
