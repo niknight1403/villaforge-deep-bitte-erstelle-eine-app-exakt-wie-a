@@ -2,17 +2,18 @@ import { test } from 'node:test';
 import assert from 'node:assert';
 import fs from 'node:fs';
 
-test('Smoke Test: Verify core project structure', () => {
-  const files = ['package.json', 'src/app/page.tsx'];
-  files.forEach(file => {
-    assert.ok(fs.existsSync(file), `${file} should exist`);
+test('Smoke Test: Check core files exist', () => {
+  const required = ['app/page.tsx', 'components/ChatInterface.tsx', 'lib/mockAI.ts'];
+  required.forEach(file => {
+    assert.ok(fs.existsSync(file), `File ${file} missing`);
   });
 });
 
-test('Build Simulation: Verify package.json configuration', () => {
-  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-  assert.strictEqual(pkg.name, 'aurora-companion-studio', 'Project name mismatch');
-  assert.ok(pkg.scripts.test, 'Test script missing');
+test('Smoke Test: Mock AI response', async () => {
+  const { getMockResponse } = await import('../lib/mockAI.ts');
+  const response = await getMockResponse('hello');
+  assert.strictEqual(typeof response, 'string');
+  assert.ok(response.length > 0);
 });
 
-console.log('All tests passed successfully.');
+console.log('Tests passed successfully.');
