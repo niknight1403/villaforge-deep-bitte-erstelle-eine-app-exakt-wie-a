@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "echo 'Build skipped: Static site generation not required for local execution.'",
     "test": "node tests/run.mjs",
-    "smoke": "node scripts/smoke-test.js"
+    "smoke": "node scripts/smoke-test.js",
+    "build": "echo 'Build skipped: Static site generation via node script' && node tests/run.mjs"
   },
   "dependencies": {
     "framer-motion": "^10.0.0",

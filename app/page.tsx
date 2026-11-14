@@ -1,16 +1,15 @@
+import React from 'react';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0F0F13] text-white p-6">
-      <header className="flex justify-between items-center border-b border-[#1A1A22] pb-4">
+      <header className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold text-[#FF3366]">Aurora Companion</h1>
         <div className="w-10 h-10 rounded-full bg-[#1A1A22] border border-[#FF3366]" />
       </header>
-      <section className="mt-8">
-        <p className="text-lg">Willkommen im Aurora Companion Studio.</p>
-        <div className="mt-6 p-6 bg-[#1A1A22] rounded-xl">
-          <h2 className="text-xl font-semibold mb-2">Status: Betriebsbereit</h2>
-          <p>Die Basis-Struktur für die PWA ist initialisiert.</p>
-        </div>
+      <section className="bg-[#1A1A22] p-6 rounded-xl border border-gray-800">
+        <h2 className="text-xl mb-4">Willkommen im Studio</h2>
+        <p className="text-gray-400">Wähle eine Begleiterin, um das Gespräch zu beginnen.</p>
       </section>
     </main>
   );
