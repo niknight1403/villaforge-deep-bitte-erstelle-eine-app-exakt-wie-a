@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build": "echo 'Build simulated: static assets ready'",
     "test": "node tests/run.mjs",
-    "smoke": "node scripts/smoke-test.js",
-    "build": "echo 'Build process simulated for static export'"
+    "smoke": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "framer-motion": "latest",
