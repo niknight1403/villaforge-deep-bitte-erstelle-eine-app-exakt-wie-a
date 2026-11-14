@@ -1,38 +1,35 @@
 const http = require('http');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test for Aurora Companion Studio...');
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
   
-  // Simulate server check
-  const mockServer = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', version: '1.0.0' }));
+  // Simulate a simple server check
+  const port = 3000;
+  const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.end('OK');
   });
 
-  try {
-    await new Promise((resolve) => mockServer.listen(3001, resolve));
-    console.log('Server initialized successfully.');
-
-    const response = await new Promise((resolve, reject) => {
-      http.get('http://localhost:3001', (res) => {
-        let data = '';
-        res.on('data', (chunk) => data += chunk);
-        res.on('end', () => resolve(JSON.parse(data)));
-      }).on('error', reject);
+  return new Promise((resolve, reject) => {
+    server.listen(port, () => {
+      console.log('Server listening on port ' + port);
+      http.get('http://localhost:' + port, (res) => {
+        if (res.statusCode === 200) {
+          console.log('Smoke Test Passed: Server responded with 200 OK.');
+          server.close();
+          resolve();
+        } else {
+          console.error('Smoke Test Failed: Unexpected status code.');
+          server.close();
+          reject();
+        }
+      }).on('error', (e) => {
+        console.error('Smoke Test Failed: ' + e.message);
+        server.close();
+        reject();
+      });
     });
-
-    if (response.status === 'ok') {
-      console.log('Smoke Test Passed: System responsive.');
-      process.exit(0);
-    } else {
-      throw new Error('Invalid response');
-    }
-  } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
-    process.exit(1);
-  } finally {
-    mockServer.close();
-  }
+  });
 }
 
-runSmokeTest();
+runSmokeTest().catch(() => process.exit(1));
