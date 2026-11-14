@@ -1,33 +1,34 @@
 const http = require('http');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: Aurora Companion Studio...');
+  console.log('Starting Smoke Test for Aurora Companion Studio...');
   
   // Simulate a local server check
-  const server = http.createServer((req, res) => {
-    res.writeHead(200);
-    res.end('OK');
-  }).listen(3000);
+  const options = {
+    hostname: 'localhost',
+    port: 3000,
+    path: '/',
+    method: 'GET',
+  };
 
-  try {
-    const response = await new Promise((resolve) => {
-      http.get('http://localhost:3000', (res) => {
-        resolve(res.statusCode === 200);
-      }).on('error', () => resolve(false));
+  return new Promise((resolve, reject) => {
+    const req = http.request(options, (res) => {
+      console.log(`Status Code: ${res.statusCode}`);
+      if (res.statusCode === 200 || res.statusCode === 404) {
+        console.log('Smoke Test Passed: Server reachable.');
+        resolve();
+      } else {
+        reject(new Error(`Server returned status ${res.statusCode}`));
+      }
     });
 
-    if (response) {
-      console.log('Smoke Test Passed: Server reachable.');
-      process.exit(0);
-    } else {
-      throw new Error('Server connectivity failed.');
-    }
-  } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
-    process.exit(1);
-  } finally {
-    server.close();
-  }
+    req.on('error', (e) => {
+      console.error(`Smoke Test Failed: ${e.message}`);
+      reject(e);
+    });
+
+    req.end();
+  });
 }
 
-runSmokeTest();
+runSmokeTest().catch(() => process.exit(1));
