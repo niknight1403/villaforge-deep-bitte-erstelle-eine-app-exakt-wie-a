@@ -1,15 +1,14 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "description": "Aurora Companion Studio Web App",
+  "description": "Aurora Companion Studio - Virtual Companion Platform",
+  "main": "index.js",
   "scripts": {
+    "build": "echo 'Build process simulated: Static assets ready.'",
     "test": "node --test tests/run.mjs",
-    "build": "echo 'Build process simulated for Aurora Companion Studio'",
     "smoke": "node --test tests/run.mjs"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
     "framer-motion": "^10.0.0",
     "zustand": "^4.0.0"
   }
