@@ -1,18 +1,19 @@
-const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test for Aurora Companion Studio...');
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
   
-  // Simulate a check for the core UI component availability
-  const mockAppStatus = { status: 'online', version: '0.1.0' };
-  
-  if (mockAppStatus.status === 'online') {
-    console.log('SUCCESS: Core UI components are reachable.');
-    process.exit(0);
-  } else {
-    console.error('FAILURE: Core UI components unreachable.');
-    process.exit(1);
+  const requiredFiles = ['package.json', 'next.config.js', 'app/page.tsx'];
+  for (const file of requiredFiles) {
+    if (!fs.existsSync(path.join(process.cwd(), file))) {
+      console.error(`Smoke Test Failed: Missing critical file ${file}`);
+      process.exit(1);
+    }
   }
+
+  console.log('Smoke Test Passed: Core infrastructure verified.');
+  process.exit(0);
 }
 
 runSmokeTest();

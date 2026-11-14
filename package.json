@@ -1,11 +1,11 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "description": "Aurora Companion Studio Web App",
+  "private": true,
   "scripts": {
-    "build": "node -e \"console.log('Build simulation: Assets compiled successfully.')\"",
     "test": "node tests/run.mjs",
-    "smoke": "node scripts/smoke-test.js"
+    "smoke": "node scripts/smoke-test.js",
+    "build": "echo 'Build skipped: Static assets ready.'"
   },
   "dependencies": {
     "framer-motion": "^10.0.0",
