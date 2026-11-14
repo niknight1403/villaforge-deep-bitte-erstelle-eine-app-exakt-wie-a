@@ -1,9 +1,8 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "private": true,
   "scripts": {
-    "build": "echo 'Build skipped: Static assets ready'",
+    "build": "node -e \"console.log('Build skipped: Static assets ready.')\"",
     "test": "node tests/run.mjs",
     "smoke": "node scripts/smoke-test.js"
   },

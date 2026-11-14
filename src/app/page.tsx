@@ -1,13 +1,15 @@
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0F0F13] text-white p-6">
-      <header className="flex justify-between items-center mb-8">
+      <header className="flex items-center justify-between border-b border-[#1A1A22] pb-4">
         <h1 className="text-2xl font-bold text-[#FF3366]">Aurora Companion Studio</h1>
         <div className="w-10 h-10 rounded-full bg-[#1A1A22] border border-[#FF3366]" />
       </header>
-      <section className="bg-[#1A1A22] p-6 rounded-xl border border-white/5">
-        <h2 className="text-xl mb-4">Willkommen bei Aurora</h2>
-        <p className="text-gray-400">Entdecke deine Begleiterinnen im exklusiven Studio.</p>
+      <section className="mt-8">
+        <div className="bg-[#1A1A22] p-6 rounded-xl">
+          <h2 className="text-xl">Willkommen in deiner Welt</h2>
+          <p className="text-gray-400 mt-2">Wähle deine Begleiterin und starte die Geschichte.</p>
+        </div>
       </section>
     </main>
   );

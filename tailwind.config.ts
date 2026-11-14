@@ -9,9 +9,6 @@ const config: Config = {
         card: '#1A1A22',
         accent: '#FF3366',
       },
-      fontFamily: {
-        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
-      },
     },
   },
   plugins: [],
