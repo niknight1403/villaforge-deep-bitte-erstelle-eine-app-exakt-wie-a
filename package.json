@@ -1,16 +1,14 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "description": "Aurora Companion Studio Web App",
+  "private": true,
   "scripts": {
-    "build": "echo 'Build process: Static assets verified.'",
+    "build": "echo 'Build skipped: Static assets ready'",
     "test": "node tests/run.mjs",
     "smoke": "node scripts/smoke-test.js"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "framer-motion": "^10.0.0",
-    "zustand": "^4.0.0"
+    "framer-motion": "latest",
+    "zustand": "latest"
   }
 }
