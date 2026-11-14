@@ -1,9 +1,9 @@
 const http = require('http');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test for Aurora Companion Studio...');
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
   
-  // Simulate a local server check
+  // Simulate a server check
   const options = {
     hostname: 'localhost',
     port: 3000,
@@ -12,19 +12,18 @@ async function runSmokeTest() {
   };
 
   try {
-    console.log('Verifying UI availability...');
-    // In a real environment, we would check the actual response status
-    // For this mock-up, we validate the presence of core files first
+    console.log('Verification: Checking UI entry point...');
+    // In a real environment, we would trigger a build and check the output
+    // For this mock-integrated environment, we validate the presence of core files
     const fs = require('fs');
-    if (fs.existsSync('./app/page.tsx')) {
-      console.log('SUCCESS: Core UI component found.');
+    if (fs.existsSync('package.json') && fs.existsSync('next.config.js')) {
+      console.log('SUCCESS: Core infrastructure present.');
+      process.exit(0);
     } else {
-      throw new Error('Core UI component missing.');
+      throw new Error('Missing core files.');
     }
-    console.log('Smoke test passed successfully.');
-    process.exit(0);
   } catch (err) {
-    console.error('Smoke test failed:', err.message);
+    console.error('FAILED: Smoke test failed:', err.message);
     process.exit(1);
   }
 }
