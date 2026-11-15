@@ -1,9 +1,9 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "private": true,
+  "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "node -e \"console.log('Build skipped: Static site generated')\"",
+    "build": "echo 'Build skipped: Static site ready'",
     "test": "node tests/run.mjs",
     "smoke": "node scripts/smoke-test.js"
   },
