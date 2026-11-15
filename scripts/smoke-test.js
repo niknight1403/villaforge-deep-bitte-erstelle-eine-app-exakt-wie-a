@@ -1,19 +1,26 @@
 const fs = require('fs');
 
-async function runSmokeTest() {
-  console.log('--- Starting Smoke Test for Aurora Companion Studio ---');
+async function smokeTest() {
+  console.log('--- Starting Smoke Test: Aurora Companion Studio ---');
   
-  const requiredFiles = ['package.json', 'src/app/page.tsx'];
-  for (const file of requiredFiles) {
-    if (!fs.existsSync(file)) {
-      console.error(`FAIL: Required file missing: ${file}`);
-      process.exit(1);
-    }
+  try {
+    // Check core files existence
+    const requiredFiles = ['package.json', 'tailwind.config.ts', 'src/app/layout.tsx'];
+    requiredFiles.forEach(file => {
+      if (!fs.existsSync(file)) throw new Error(`Missing critical file: ${file}`);
+    });
+
+    // Simulate UI Flow Check
+    console.log('Verification: Branding check...');
+    const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+    if (pkg.name !== 'aurora-companion-studio') throw new Error('Branding mismatch in package.json');
+
+    console.log('Smoke Test Passed: Core infrastructure and branding verified.');
+    process.exit(0);
+  } catch (err) {
+    console.error('Smoke Test Failed:', err.message);
+    process.exit(1);
   }
-  
-  console.log('SUCCESS: Core structure verified.');
-  console.log('Smoke test passed.');
-  process.exit(0);
 }
 
-runSmokeTest();
+smokeTest();
