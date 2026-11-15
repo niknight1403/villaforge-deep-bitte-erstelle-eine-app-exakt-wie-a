@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Standalone Companion Web App",
   "scripts": {
-    "build": "node -e \"console.log('Build simulated: Static assets ready.')\"",
+    "build": "echo 'Build process: Static site generation simulated.' && mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true",
     "test": "node tests/run.mjs",
     "smoke": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "framer-motion": "^10.0.0",
     "zustand": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
   }
 }
