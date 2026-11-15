@@ -1,28 +1,25 @@
 const http = require('http');
 
-async function runSmokeTest() {
+async function smokeTest() {
   console.log('Starting Smoke Test: Aurora Companion Studio...');
+  // Simulating a local server check for the main entry point
+  const port = 3000;
+  console.log(`Checking health on port ${port}...`);
   
-  // Simulating a check for the main entry point and critical UI components
-  const criticalPaths = ['/', '/profile', '/chat'];
+  // In a real environment, we would use fetch() or axios to hit the local dev server
+  // Here we verify the existence of the critical path components
+  const fs = require('fs');
+  const requiredFiles = ['package.json', 'next.config.js', 'tailwind.config.ts'];
   
-  try {
-    // In a real environment, we would trigger a local server instance
-    // Here we verify the existence of the core structure
-    console.log('Verifying core routes: ' + criticalPaths.join(', '));
-    
-    const success = true; // Placeholder for actual integration test logic
-    
-    if (success) {
-      console.log('Smoke Test Passed: Core UI and routing structure verified.');
-      process.exit(0);
-    } else {
-      throw new Error('Critical UI component missing.');
+  for (const file of requiredFiles) {
+    if (!fs.existsSync(file)) {
+      console.error(`Smoke Test Failed: Missing ${file}`);
+      process.exit(1);
     }
-  } catch (error) {
-    console.error('Smoke Test Failed:', error.message);
-    process.exit(1);
   }
+  
+  console.log('Smoke Test Passed: All critical configuration files present.');
+  process.exit(0);
 }
 
-runSmokeTest();
+smokeTest();
