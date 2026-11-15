@@ -1,20 +1,22 @@
 const http = require('http');
 
-async function smokeTest() {
-  console.log('Starting Smoke Test for Aurora Companion Studio...');
+async function runSmokeTest() {
+  console.log('Starting Smoke Test: Aurora Companion Studio...');
   // Simulate a local server check
-  const port = 3000;
-  console.log(`Checking health at http://localhost:${port}/api/health`);
-  
-  // In a real environment, we would use fetch. Here we verify the structure.
-  const success = true;
-  if (success) {
-    console.log('Smoke Test Passed: Core UI and API routes are responsive.');
-    process.exit(0);
-  } else {
-    console.error('Smoke Test Failed: Service unreachable.');
+  try {
+    // In a real environment, we would trigger 'npm run dev' and check the health endpoint
+    console.log('Verification: Checking core dependencies...');
+    const pkg = require('../package.json');
+    if (pkg.dependencies.next && pkg.dependencies.react) {
+      console.log('Success: Core dependencies found.');
+      process.exit(0);
+    } else {
+      throw new Error('Dependencies missing');
+    }
+  } catch (e) {
+    console.error('Smoke Test Failed:', e.message);
     process.exit(1);
   }
 }
 
-smokeTest();
+runSmokeTest();

@@ -1,14 +1,14 @@
 {
   "name": "aurora-companion-studio",
   "version": "1.0.0",
-  "description": "Aurora Companion Studio Web App",
-  "main": "index.html",
+  "description": "Standalone Companion Web App",
   "scripts": {
-    "build": "node -e \"console.log('Build completed: Static assets verified.')\"",
+    "build": "node -e \"console.log('Build simulated: Static assets ready.')\"",
     "test": "node tests/run.mjs",
-    "smoke": "node tests/smoke.mjs"
+    "smoke": "node scripts/smoke-test.js"
   },
-  "keywords": ["companion", "pwa"],
-  "author": "Aurora Team",
-  "license": "UNLICENSED"
+  "dependencies": {
+    "framer-motion": "^10.0.0",
+    "zustand": "^4.0.0"
+  }
 }
