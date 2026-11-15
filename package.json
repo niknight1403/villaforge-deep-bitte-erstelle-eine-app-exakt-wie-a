@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Aurora Companion Studio Web App",
   "scripts": {
-    "build": "echo 'Build skipped: Static site ready'",
+    "build": "node -e \"console.log('Build simulated: Static assets ready.')\"",
     "test": "node tests/run.mjs",
     "smoke": "node scripts/smoke-test.js"
   },
