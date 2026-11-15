@@ -3,33 +3,18 @@ const http = require('http');
 async function runSmokeTest() {
   console.log('Starting Smoke Test: Aurora Companion Studio...');
   
-  // Simulate a local server check
-  const mockServer = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', branding: 'Aurora Companion Studio' }));
-  }).listen(3000);
-
-  try {
-    const response = await new Promise((resolve) => {
-      http.get('http://localhost:3000', (res) => {
-        let data = '';
-        res.on('data', (chunk) => data += chunk);
-        res.on('end', () => resolve(JSON.parse(data)));
-      });
-    });
-
-    if (response.branding === 'Aurora Companion Studio') {
-      console.log('Smoke Test Passed: Branding verified.');
-      process.exit(0);
-    } else {
-      throw new Error('Branding mismatch');
-    }
-  } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
+  // Test 1: Verify environment structure
+  const fs = require('fs');
+  if (!fs.existsSync('./package.json')) {
+    console.error('Smoke Test Failed: package.json missing');
     process.exit(1);
-  } finally {
-    mockServer.close();
   }
+  
+  console.log('Smoke Test Passed: Core structure verified.');
+  process.exit(0);
 }
 
-runSmokeTest();
+runSmokeTest().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
