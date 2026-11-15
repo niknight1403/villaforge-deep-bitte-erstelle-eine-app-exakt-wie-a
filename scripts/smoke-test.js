@@ -1,20 +1,19 @@
-const http = require('http');
+const fs = require('fs');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: Aurora Companion Studio...');
+  console.log('--- Starting Smoke Test for Aurora Companion Studio ---');
   
-  // Test 1: Verify environment structure
-  const fs = require('fs');
-  if (!fs.existsSync('./package.json')) {
-    console.error('Smoke Test Failed: package.json missing');
-    process.exit(1);
+  const requiredFiles = ['package.json', 'src/app/page.tsx'];
+  for (const file of requiredFiles) {
+    if (!fs.existsSync(file)) {
+      console.error(`FAIL: Required file missing: ${file}`);
+      process.exit(1);
+    }
   }
   
-  console.log('Smoke Test Passed: Core structure verified.');
+  console.log('SUCCESS: Core structure verified.');
+  console.log('Smoke test passed.');
   process.exit(0);
 }
 
-runSmokeTest().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+runSmokeTest();
